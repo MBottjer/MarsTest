@@ -23,29 +23,43 @@ describe Rover do
   end
 
   it 'is able to rotate right 90 degrees' do
-    rover.move("0 0 N", "R")
-    expect(rover.direction_facing).to eq "E"
+    rover.move("R")
+    expect(rover.facing).to eq "E"
   end
 
   it 'is able to rotate left 90 degrees' do
-    rover.move("0 0 N", "L")
-    expect(rover.direction_facing).to eq "W"
+    rover.move("L")
+    expect(rover.facing).to eq "W"
   end
 
   it 'is able to take multiple rotational commands' do 
-    rover.move("0 0 N", "RLRLRLLL")
-    expect(rover.direction_facing).to eq "S"
+    rover.move("RLRLRLLL")
+    expect(rover.facing).to eq "S"
   end
 
   it 'is able to take multiple rotational commands' do 
-    rover.move("0 0 N", "RLLLRLLL")
-    expect(rover.direction_facing).to eq "N"
+    rover.move("RLLLRLLL")
+    expect(rover.facing).to eq "N"
+  end  
+    
+  it "can update it's current position" do
+    rover.x_coord = 3
+    rover.y_coord = 3
+    rover.update_current_position
+    expect(rover.current_position).to eq '3 3 N'
   end
 
   it 'can move one space up the y-axis' do 
-    rover.move("0 0 N", "M")
+    rover.move("M")
     expect(rover.current_position).to eq ("0 1 N")
+  end
+
+  it 'can rotate and move simultaneously' do 
+    rover.move("MRMLM")
+    expect(rover.current_position).to eq "1 2 N"
   end
 
  
 end
+
+  
