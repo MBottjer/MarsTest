@@ -1,6 +1,6 @@
 class Rover
 
-  attr_accessor :direction_facing
+  attr_reader :direction_facing
 
   # def facing(current_location) 
   #   current_location.split[2]
@@ -20,13 +20,21 @@ class Rover
   end
 
   def new_direction(command)
-    number = 0 
-    if command == "R"
-      number += 1 
-    elsif command == "L"
-      number -= 1
+    # number = 0 
+    # if command == "R"
+    #   number += 1 
+    # elsif command == "L"
+    #   number -= 1
+    # end
+    # number
+    command.split("").inject(0) do |sum, letter|
+      if letter == "R"
+        sum += 1
+      elsif letter == "L"
+        sum -= 1
+      end
+      sum
     end
-    number 
   end
 
 

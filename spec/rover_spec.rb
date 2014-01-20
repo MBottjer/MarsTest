@@ -27,4 +27,9 @@ describe Rover do
     expect(rover.direction_facing).to eq "W"
   end
 
+  it 'is able to take multiple rotational commands' do 
+    rover.move("0 0 N", "RLRLRLLL")
+    expect(rover.direction_facing).to eq "S"
+  end
+ 
 end
