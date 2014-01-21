@@ -5,21 +5,21 @@ require_relative 'compass'
 
 class Interface
 
-  def send(commands, rover)
-    array_of(commands).each do |command| 
-      relocate(command, rover)
-    end
-    rover.current_position
-  end
-
-  def read_input
-    File.open('spec/fixtures/input.txt').read
-  end
+  # def send(commands, rover)
+  #   array_of(commands).each do |command| 
+  #     relocate(command, rover)
+  #   end
+  #   rover.current_position
+  # end
 
   def get_input_as_array
     array = []
     read_input.each_line { |line| array << line }
     array
+  end
+
+  def read_input
+    File.open('spec/fixtures/input.txt').read
   end
 
   def get_boundaries
@@ -32,10 +32,24 @@ class Interface
     return inputs
   end
 
+  def relocate(command, rover)
+    command == "M" ? rover.move : rover.turn(command)
+  end
+
+  def execute_commands(commands, rover)
+    commands.split("").each { |command| relocate(command, rover)}
+  end
+
+
+
+
+
+
   def get_rover_position_and_commands
     remove_boundary_input.each_slice(2) do |start_pos, commands|
       rover = create_rover_at(start_pos)
       execute_commands(commands, rover)
+      rover.current_position
     end
   end
 
@@ -44,9 +58,7 @@ class Interface
     Rover.new(Position.new(array[0].to_i, array[1].to_i, array[2], Plateau.new(get_boundaries[0], get_boundaries[1])))
   end
 
-  def execute_commands(commands, rover)
-
-
+  
 
   def get_rover_positions
     get_rover_position_and_commands.map { |pair| pair[0].split}
@@ -60,9 +72,7 @@ class Interface
     Plateau.new(get_boundaries[0], get_boundaries[1])
   end
 
-  def relocate(command, rover)
-    command == "M" ? rover.move : rover.turn(command)
-  end
+  
 
   def setup_rover
     Rover.new(Position.new(iterate_through_rovers[0].to_i, iterate_through_rovers[1].to_i, iterate_through_rovers[2]))

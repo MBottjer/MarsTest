@@ -6,9 +6,19 @@ describe Interface do
   let(:interface) {Interface.new}
   let(:rover) {Rover.new}
 
-  it 'can move the rover taking in a string of commands' do 
-    interface.send("MMRML", rover)
-    expect(rover.current_position).to eq "1 2 N"
+  # it 'can move the rover taking in a string of commands' do 
+  #   interface.send("MMRML", rover)
+  #   expect(rover.current_position).to eq "1 2 N"
+  # end
+
+  it 'can relocate the rover' do 
+    interface.relocate("M", rover)
+    expect(rover.current_position).to eq "0 1 N"
+  end
+
+  it 'can relocate the rover taking in multiple commands' do 
+    interface.execute_commands("MMRMLM", rover)
+    expect(rover.current_position).to eq "1 3 N"
   end
 
   it 'can convert the input from the text file into an array' do 
@@ -23,13 +33,21 @@ describe Interface do
     expect(interface.remove_boundary_input).to eq ["1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
   end
 
+
+
+
+
+
+
+
+
   it 'can split rover positions and commands into array pairs' do 
     expect(interface.get_rover_position_and_commands).to eq [["1 2 N\n", "LMLMLMLMM\n"], ["3 3 E\n", "MMRMMRMRRM"]]
   end
 
-  it 'can split a pair of positions and commands into their an array of positions' do 
-    expect(interface.get_rover_positions).to eq [["1", "2", "N"], ["3", "3", "E"]]
-  end
+  # it 'can split a pair of positions and commands into their an array of positions' do 
+  #   expect(interface.get_rover_positions).to eq [["1", "2", "N"], ["3", "3", "E"]]
+  # end
 
   # it 'can take the commands from the position command pairs' do 
   #   expect(interface.get_commands).to eq 
