@@ -5,12 +5,11 @@ require_relative 'compass'
 
 class Interface
 
-  # def send(commands, rover)
-  #   array_of(commands).each do |command| 
-  #     relocate(command, rover)
-  #   end
-  #   rover.current_position
-  # end
+  attr_reader :plateau_to_explore
+
+  def initialize
+    @plateau_to_explore = Plateau.new(get_boundaries[0], get_boundaries[1])
+  end
 
   def get_input_as_array
     array = []
@@ -29,7 +28,7 @@ class Interface
   def remove_boundary_input
     inputs = get_input_as_array
     inputs.shift
-    return inputs
+    inputs
   end
 
   def relocate(command, rover)
@@ -51,12 +50,12 @@ class Interface
   end
 
   def output
-    get_rover_position_and_commands.map { |array| array.join(' ') }.each { |string| puts string }
+    send_rover_position_and_commands.map { |array| array.join(' ') }.each { |string| puts string }
   end
 
   def create_rover_at(start_pos)
     array = start_pos.split
-    Rover.new(Position.new(array[0].to_i, array[1].to_i, array[2], Plateau.new(get_boundaries[0], get_boundaries[1])))
+    Rover.new(Position.new(array[0].to_i, array[1].to_i, array[2], @plateau_to_explore))
   end
 
   def get_rover_positions

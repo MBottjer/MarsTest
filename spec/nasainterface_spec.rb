@@ -44,7 +44,7 @@ describe Interface do
     expect(interface.remove_boundary_input).to eq ["1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
   end
 
-  it 'can split rover positions and commands into array pairs' do 
+  it 'can send a string of commands and a rovers position and return an array of the outputs' do 
     expect(interface.send_rover_position_and_commands).to eq [["1 3 N"], ["5 1 E"]]
   end
 
