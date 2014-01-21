@@ -40,25 +40,24 @@ class Interface
     commands.split("").each { |command| relocate(command, rover)}
   end
 
-
-
-
-
-
-  def get_rover_position_and_commands
+  def send_rover_position_and_commands
+    rover_info = []
     remove_boundary_input.each_slice(2) do |start_pos, commands|
       rover = create_rover_at(start_pos)
-      execute_commands(commands, rover)
-      rover.current_position
+      execute_commands(commands.strip, rover)
+      rover_info << [rover.current_position]
     end
+    rover_info
+  end
+
+  def output
+    get_rover_position_and_commands.map { |array| array.join(' ') }.each { |string| puts string }
   end
 
   def create_rover_at(start_pos)
     array = start_pos.split
     Rover.new(Position.new(array[0].to_i, array[1].to_i, array[2], Plateau.new(get_boundaries[0], get_boundaries[1])))
   end
-
-  
 
   def get_rover_positions
     get_rover_position_and_commands.map { |pair| pair[0].split}

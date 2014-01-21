@@ -5,7 +5,7 @@ describe Position do
 
   let(:position) {Position.new}
   let(:position_two) {Position.new(0,0,"E")}
-  let(:position_three) {Position.new(6,0,"N")}
+  let(:position_three) {Position.new(5,0,"N")}
 
   it 'has a default x_coordinate of 0' do 
     expect(position.x_coord).to eq 0
@@ -52,11 +52,11 @@ describe Position do
   end
 
   it 'is out of bounds when the x coordinate is bigger than the plateaus bounds' do 
-    expect(position_three.out_of_bounds).to raise_error(RuntimeError, "NASA's budget was too low for us to explore this region")
+    lambda { position_three.move }.should raise_error(RuntimeError)
   end
 
   it 'is within the boundaries when the y and x coordinates are less than the plateaus bounds' do 
-    expect(position.out_of_bounds).to be_false
+    expect(position.out_of_bounds?).to be_false
   end
 
 
