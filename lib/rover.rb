@@ -3,6 +3,7 @@ class Rover
   attr_accessor :current_location, :facing, :x_coord, :y_coord, :current_plateau
   
   COMPASS = ["N", "E", "S", "W"]
+  # MOVEMENT_ACTIONS = {"N" => 1, "E" => 1, "S" => -1, "W" => -1}
 
   def initialize(current_location = [0, 0, "N"])
     @x_coord = current_location[0]
@@ -19,12 +20,14 @@ class Rover
 
   # take this out of rover and put into interface class
   def move(command)  
-    command.split('').each do |com|
-      new_direction(com) if com == 'L' || com == 'R'
-      new_position if com == 'M'
-      update_current_position
-    end
+    command.split('').each { |com| rotate_or_move(com) }
+    update_current_position
   end
+
+  def rotate_or_move(command)
+    if command.match(/(L|R)/) then new_direction(command) elsif command.match(/M/) then new_position end
+  end
+
   
   def new_position
     if facing == "N"
