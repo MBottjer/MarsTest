@@ -16,9 +16,10 @@ class Rover
     @current_location = "#{@x_coord} #{@y_coord} #{@facing}"
   end
 
+
+  # take this out of rover and put into interface class
   def move(command)  
-    command_sequence = command.split('')
-    command_sequence.each do |com|
+    command.split('').each do |com|
       new_direction(com) if com == 'L' || com == 'R'
       new_position if com == 'M'
       update_current_position
@@ -37,11 +38,17 @@ class Rover
     end
   end
 
-  def new_direction(direction)
-    right_or_left = direction == "R" ? 1 : -1
-    index_of_currently_facing = COMPASS.index(@facing) + right_or_left
-    index_of_currently_facing = check_rotation(index_of_currently_facing)
-    @facing = COMPASS[index_of_currently_facing]
+  def new_direction(command)
+    now_facing = check_rotation(index_of_currently_facing + right_or_left(command))
+    @facing = COMPASS[now_facing]
+  end
+
+  def index_of_currently_facing
+    COMPASS.index(@facing)
+  end
+
+  def right_or_left(command)
+    command == "R" ? 1 : -1
   end
   
   def check_rotation(index_of_currently_facing)

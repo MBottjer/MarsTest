@@ -6,6 +6,8 @@ describe Rover do
   let(:rover) {Rover.new}
   let(:rover_two) {Rover.new([5, 2, "S"])}
 
+  COMPASS = ["N", "E", "S", "W"]
+
   it 'knows the direction it is facing' do 
     expect(rover.facing).to eq "N"
   end
@@ -20,6 +22,18 @@ describe Rover do
 
   it 'knows its current position' do 
     expect(rover_two.current_location).to eq ("5 2 S")
+  end
+
+  it 'returns one if commanded to turn right' do 
+    expect(rover.right_or_left("R")).to eq 1
+  end
+
+  it 'returns minus one if commanded to turn left' do 
+    expect(rover.right_or_left("L")).to eq -1
+  end
+
+  it 'can give the index of the direction it is currently facing using the compass constant' do 
+    expect(rover.index_of_currently_facing).to eq 0
   end
 
   it 'is able to rotate right 90 degrees' do
