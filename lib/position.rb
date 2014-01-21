@@ -16,14 +16,9 @@ class Position
     @facing = Compass.turn("L", facing)
   end
 
-  # def move 
-  #   case facing
-  #     when "N" then @y_coord += 1
-  #     when "E" then @x_coord += 1 
-  #     when "S" then @y_coord -= 1
-  #     when "W" then @x_coord -= 1
-  #   end
-  # end
+  def rotate
+    
+  end
 
   def move_vertically
     @y_coord += MOVEMENT_ACTIONS[@facing]
@@ -40,5 +35,6 @@ class Position
       move_horizontally
     end
   end
+
 
 end
