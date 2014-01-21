@@ -28,6 +28,11 @@ describe Position do
     expect(position.facing).to eq "W"
   end
 
+  it 'can turn according to the direction provided' do 
+    position.turn("R")
+    expect(position.facing).to eq "E"
+  end 
+
   it 'can change its y coordinate upon moving along the y-axis' do 
     position.move_vertically
     expect(position.y_coord).to eq 1

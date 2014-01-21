@@ -13,7 +13,7 @@ class Rover
   end
 
   def move
-    @postion.move
+    @position.move
   end
 
   def turn(direction)

@@ -16,8 +16,8 @@ class Position
     @facing = Compass.turn("L", facing)
   end
 
-  def rotate
-    
+  def turn(direction)
+    if direction == "R" then turn_right else turn_left end
   end
 
   def move_vertically
