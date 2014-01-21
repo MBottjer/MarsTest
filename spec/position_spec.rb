@@ -44,6 +44,13 @@ describe Position do
     expect(position_two.x_coord).to eq 1
   end
 
+  it 'can return a full set of x and y coordinates and the direction it is facing after being moved' do 
+    position.move_vertically
+    position.turn("R")
+    position.move_horizontally
+    expect(position.current_position).to eq "1 1 E"
+  end
+
   it 'is out of bounds when the x coordinate is bigger than the plateaus bounds' do 
     expect(position_three.out_of_bounds).to raise_error(RuntimeError, "NASA's budget was too low for us to explore this region")
   end

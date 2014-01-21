@@ -18,13 +18,4 @@ describe Plateau do
 
   end
 
-  context 'it can add a rover to itself' do 
-    
-    it 'can have a rover added to it' do 
-      plateau.add(rover)
-      expect(plateau.rovers.size).to eq 1
-    end
-
-  end
-
 end

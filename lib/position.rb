@@ -48,4 +48,8 @@ class Position
     end
   end
 
+  def current_position
+    "#{x_coord} #{y_coord} #{facing}"
+  end
+
 end
