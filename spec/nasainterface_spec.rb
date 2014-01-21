@@ -8,8 +8,8 @@ describe Interface do
   let(:rover) {Rover.new(position)}
 
   it 'can move the rover taking in a string of commands' do 
-    interface.send("MMRML", position)
-    expect(position.y_coord).to eq 2
+    interface.send("MMRML", rover)
+    expect(rover.position.y_coord).to eq 2
   end
 
   # it 'can move the rover' do

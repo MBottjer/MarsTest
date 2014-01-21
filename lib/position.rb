@@ -1,15 +1,29 @@
 class Position 
 
-  attr_accessor :x_coord, :y_coord, :facing
+  attr_accessor :x_coord, :y_coord, :facing, :plateau
 
   MOVEMENT_ACTIONS = {"N" => 1, "E" => 1, "S" => -1, "W" => -1}
 
-  def initialize(x_coord=0, y_coord=0, facing="N")
-    @x_coord, @y_coord, @facing = x_coord, y_coord, facing
+  def initialize(x_coord=0, y_coord=0, facing="N", plateau = Plateau.new(5,5))
+    @x_coord, @y_coord, @facing, @plateau = x_coord, y_coord, facing, plateau
   end
 
   def turn_right
     @facing = Compass.turn("R", facing)
+  end
+
+  def out_of_y_axis
+    y_coord > @plateau.y_boundary || y_coord < 0
+  end
+
+  def out_of_x_axis
+    x_coord > @plateau.x_boundary || x_coord < 0
+  end
+
+  def out_of_bounds
+    if out_of_y_axis || out_of_x_axis
+      raise "NASA's budget was too low for us to explore this region"
+    end
   end
 
   def turn_left
@@ -17,24 +31,21 @@ class Position
   end
 
   def turn(direction)
-    if direction == "R" then turn_right else turn_left end
+    direction == "R" ? turn_right : turn_left
   end
 
   def move_vertically
     @y_coord += MOVEMENT_ACTIONS[@facing]
   end
 
-  def move_horizontally 
+  def move_horizontally
     @x_coord += MOVEMENT_ACTIONS[@facing]
   end
 
-  def move 
-    if @facing == "N" || @facing == "S"
-      move_vertically
-    else
-      move_horizontally
+  def move
+    unless out_of_bounds
+      @facing == "N" || @facing == "S" ? move_vertically : move_horizontally
     end
   end
-
 
 end
