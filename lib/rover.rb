@@ -4,16 +4,12 @@ class Rover
   
   COMPASS = ["N", "E", "S", "W"]
 
-  def initialize(current_location = "0 0 N")
-    @x_coord = current_location[0].to_i
-    @y_coord = current_location[2].to_i
-    @facing = current_location[4]
+  def initialize(current_location = [0, 0, "N"])
+    @x_coord = current_location[0]
+    @y_coord = current_location[1]
+    @facing = current_location[2]
     @current_location = "#{x_coord} #{y_coord} #{facing}"
     @current_plateau = nil
-  end
-
-  def current_position
-    current_location
   end
   
   def update_current_position

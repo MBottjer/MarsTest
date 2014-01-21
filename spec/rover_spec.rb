@@ -4,7 +4,7 @@ require_relative '../lib/rover'
 describe Rover do 
 
   let(:rover) {Rover.new}
-  let(:rover_two) {Rover.new("5 2 S")}
+  let(:rover_two) {Rover.new([5, 2, "S"])}
 
   it 'knows the direction it is facing' do 
     expect(rover.facing).to eq "N"
@@ -19,7 +19,7 @@ describe Rover do
   end
 
   it 'knows its current position' do 
-    expect(rover_two.current_position).to eq ("5 2 S")
+    expect(rover_two.current_location).to eq ("5 2 S")
   end
 
   it 'is able to rotate right 90 degrees' do
@@ -46,17 +46,17 @@ describe Rover do
     rover.x_coord = 3
     rover.y_coord = 3
     rover.update_current_position
-    expect(rover.current_position).to eq '3 3 N'
+    expect(rover.current_location).to eq '3 3 N'
   end
 
   it 'can move one space up the y-axis' do 
     rover.move("M")
-    expect(rover.current_position).to eq ("0 1 N")
+    expect(rover.current_location).to eq ("0 1 N")
   end
 
   it 'can rotate and move simultaneously' do 
     rover.move("MRMLM")
-    expect(rover.current_position).to eq "1 2 N"
+    expect(rover.current_location).to eq "1 2 N"
   end
 
  
