@@ -19,27 +19,27 @@ class Rover
 
 
   # take this out of rover and put into interface class
-  def move(command)  
-    command.split('').each { |com| rotate_or_move(com) }
-    update_current_position
-  end
+  # def move(command)  
+  #   command.split('').each { |com| rotate_or_move(com) }
+  #   update_current_position
+  # end
 
-  def rotate_or_move(command)
-    if command.match(/(L|R)/) then new_direction(command) elsif command.match(/M/) then new_position end
-  end
+  # def rotate_or_move(command)
+  #   if command.match(/(L|R)/) then new_direction(command) elsif command.match(/M/) then new_position end
+  # end
 
   
-  def new_position
-    if facing == "N"
-      @y_coord += 1 
-    elsif facing == "E"
-      @x_coord += 1 
-    elsif facing == "S"
-      @y_coord -= 1
-    else 
-      @x_coord -= 1
-    end
-  end
+  # def new_position
+  #   if facing == "N"
+  #     @y_coord += 1 
+  #   elsif facing == "E"
+  #     @x_coord += 1 
+  #   elsif facing == "S"
+  #     @y_coord -= 1
+  #   else 
+  #     @x_coord -= 1
+  #   end
+  # end
 
   # def rotate(command)
   #   position.facing = Compass.turn(command, position.facing)

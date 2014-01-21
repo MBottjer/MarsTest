@@ -4,7 +4,7 @@ require_relative '../lib/nasainterface'
 describe Interface do
 
   let(:interface) {Interface.new}
-  let(:rover_one) {double(:Rover, :current_location => "0 0 N")}
+
 
   # it 'can move the rover' do
   #   interface.send("RML", rover_one)

@@ -4,6 +4,7 @@ require_relative '../lib/position'
 describe Position do 
 
   let(:position) {Position.new}
+  let(:position_two) {Position.new(0,0,"E")}
 
   it 'has a default x_coordinate of 0' do 
     expect(position.x_coord).to eq 0
@@ -28,9 +29,14 @@ describe Position do
   end
 
   it 'can change its y coordinate upon moving along the y-axis' do 
-    position.move
+    position.move_vertically
     expect(position.y_coord).to eq 1
   end
+
+  it 'can change its x coordinate upon moving along the x-axis' do 
+    position_two.move_horizontally
+    expect(position_two.x_coord).to eq 1
+  end 
 
 
 end
