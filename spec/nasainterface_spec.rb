@@ -3,10 +3,10 @@ require_relative '../lib/nasainterface'
 
 describe Interface do
 
-  let(:interface) {Interface.new(File.open('spec/fixtures/input.txt').read)}
+  let(:interface) {Interface.new(IO.read('spec/fixtures/input.txt'))}
 
   it 'can convert the input from the text file into an array' do 
-    expect(interface.get_input_as_array).to eq ["5 5\n", "1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
+    expect(IO.read('spec/fixtures/input.txt').lines).to eq ["5 5\n", "1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
   end
 
   it 'can convert a string seperated by spaces into an array' do 
@@ -20,7 +20,8 @@ describe Interface do
   end
 
   it 'can take the first line of input' do 
-    expect(interface.get_boundaries).to eq [5,5]
+    input = IO.read('spec/fixtures/input.txt').lines.shift
+    expect(interface.parse_boundaries(input)).to eq [5,5]
   end
 
   it 'can remove the first value in an array' do 
@@ -29,7 +30,9 @@ describe Interface do
   end
 
   it 'can remove the first line of input' do 
-    expect(interface.remove_boundary_input).to eq ["1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
+    input = IO.read('spec/fixtures/input.txt').lines
+    input.shift
+    expect(input).to eq ["1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
   end
 
   it 'can split an array into pairs of arrays and select the first part of each array' do 
@@ -44,7 +47,5 @@ describe Interface do
     arrays = arrays.map {|array| array.join('')}
     expect(arrays).to eq ["1 2", "3 4", "5 6", "6 7"]
   end
-
-  
 
 end

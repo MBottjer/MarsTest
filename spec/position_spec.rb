@@ -28,7 +28,7 @@ describe Position do
 
   end
 
-  context 'it is able to the change direction it is facing' do 
+  context 'it is able to the change the direction it is facing' do 
 
     it 'can turn right such that it is now facing East' do
       position.turn_right

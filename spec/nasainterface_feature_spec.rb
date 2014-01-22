@@ -32,12 +32,13 @@ describe Interface, " and integration of classes" do
     expect(interface.send_rover_position_and_commands).to eq [["1 3 N"], ["5 1 E"]]
   end
 
-  it 'uses the selected file initialized with the interface and provides the output as an array' do 
-    expect(interface.output).to eq ["1 3 N", "5 1 E"]
+  it 'is able to take a rectangular plateau, any positions, multiple rovers and many commands' do
+    expect(interface_two.output_positions).to eq ["5 4 W", "5 2 N", "1 2 S"]
   end
 
-  it 'if given a different shaped plateau, longer commands, and three rovers it still produces the true outcome' do
-    expect(interface_two.output).to eq ["5 4 W", "5 2 N", "1 2 S"]
+  it 'uses the mentioned input in the input file to provide the solution' do 
+    expect($stdout).to receive(:puts).twice
+    expect(interface.output_positions).to eq ["1 3 N", "5 1 E"]
   end
 
 

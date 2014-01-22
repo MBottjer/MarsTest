@@ -8,9 +8,7 @@ class Plateau
   end
 
   def out_of_bounds?(x_coordinate, y_coordinate)
-    if x_coordinate > x_boundary || y_coordinate > y_boundary
-      raise "NASA's budget was too low for us to explore this region"
-    end
+    raise "NASA's budget was too low for us to explore this region" if x_coordinate > x_boundary || y_coordinate > y_boundary
   end
 
 end
