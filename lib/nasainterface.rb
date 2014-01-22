@@ -38,19 +38,17 @@ class Interface
     commands.split("").each { |command| relocate(command, rover)}
   end
 
-  # def send_rover_position_and_commands
-  #   rover_info = []
-  #   remove_boundary_input.each_slice(2) do |start_pos, commands|
-  #     rover = create_rover_at(start_pos)
-  #     execute_commands(commands.strip, rover)
-  #     rover_info << [rover.current_position]
-  #   end
-  #   rover_info
-  # end
-
-  def output
-    send_rover_position_and_commands.map { |array| array.join(' ') }.each { |string| puts string }
+  def send_rover_position_and_commands
+    rover_info = []
+    remove_boundary_input.each_slice(2) do |start_pos, commands|
+      rover = create_rover_at(start_pos)
+      execute_commands(commands.strip, rover)
+      rover_info << [rover.current_position]
+    end
+    rover_info
   end
+
+
 
   def create_rover_at(start_pos)
     array = start_pos.split

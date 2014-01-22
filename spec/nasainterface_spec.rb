@@ -39,6 +39,12 @@ describe Interface do
     expect(letters).to eq ["a","b","c","d"]
   end
 
+  it 'can turn an array of arrays into an array where each element is a string' do 
+    arrays = [["1 2"],["3 4"],["5 6"],["6 7"]]
+    arrays = arrays.map {|array| array.join('')}
+    expect(arrays).to eq ["1 2", "3 4", "5 6", "6 7"]
+  end
+
   
 
 end
