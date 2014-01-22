@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../lib/nasainterface'
+require_relative '../lib/interface'
 
 describe Interface do
 
