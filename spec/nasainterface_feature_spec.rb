@@ -31,5 +31,9 @@ describe Interface, " and integration of classes" do
     expect(interface.send_rover_position_and_commands).to eq [["1 3 N"], ["5 1 E"]]
   end
 
+  it 'can simply use the selected file initialized with the interface and provide the output as an array' do 
+    expect(interface.output).to eq ["1 3 N", "5 1 E"]
+  end
+
 
 end
