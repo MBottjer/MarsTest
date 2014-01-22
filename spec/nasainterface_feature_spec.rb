@@ -4,6 +4,7 @@ require_relative '../lib/nasainterface'
 describe Interface, " and integration of classes" do
 
   let(:interface) {Interface.new(File.open('spec/fixtures/input.txt').read)}
+  let(:interface_two) {Interface.new(File.open('spec/fixtures/test_input.txt').read)}
   let(:rover) {Rover.new}
   let(:rover_two) {Rover.new(Position.new(1,2,"N"))}
 
@@ -31,8 +32,12 @@ describe Interface, " and integration of classes" do
     expect(interface.send_rover_position_and_commands).to eq [["1 3 N"], ["5 1 E"]]
   end
 
-  it 'can simply use the selected file initialized with the interface and provide the output as an array' do 
+  it 'uses the selected file initialized with the interface and provides the output as an array' do 
     expect(interface.output).to eq ["1 3 N", "5 1 E"]
+  end
+
+  it 'if given a different shaped plateau, longer commands, and three rovers it still produces the true outcome' do
+    expect(interface_two.output).to eq ["5 4 W", "5 2 N", "1 2 S"]
   end
 
 
