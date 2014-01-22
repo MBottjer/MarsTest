@@ -57,28 +57,4 @@ class Interface
     Rover.new(Position.new(array[0].to_i, array[1].to_i, array[2], @plateau_to_explore))
   end
 
-  def get_rover_positions
-    get_rover_position_and_commands.map { |pair| pair[0].split}
-  end
-
-  def iterate_through_rovers
-    get_rover_positions.each {|rover_position| rover_position}
-  end
-
-  def setup_plateau
-    Plateau.new(get_boundaries[0], get_boundaries[1])
-  end
-
-  def setup_rover
-    Rover.new(Position.new(iterate_through_rovers[0].to_i, iterate_through_rovers[1].to_i, iterate_through_rovers[2]))
-  end
-
-  def array_of(commands)
-    commands.split('')
-  end
-
-  def process_information(file)
-    send
-  end
-
 end

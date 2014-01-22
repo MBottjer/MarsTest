@@ -4,8 +4,6 @@ require_relative '../lib/nasainterface'
 describe Interface do
 
   let(:interface) {Interface.new(File.open('spec/fixtures/input.txt').read)}
-  let(:rover) {Rover.new}
-  let(:rover_two) {Rover.new(Position.new(1,2,"N"))}
 
   it 'can convert the input from the text file into an array' do 
     expect(interface.get_input_as_array).to eq ["5 5\n", "1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
@@ -34,8 +32,11 @@ describe Interface do
     expect(interface.remove_boundary_input).to eq ["1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
   end
 
-  it 'can send a string of commands and a rovers position and return an array of the outputs' do 
-    expect(interface.send_rover_position_and_commands).to eq [["1 3 N"], ["5 1 E"]]
+  it 'can split an array into pairs of arrays' do 
+    array = [1,1,2,2,3,3,4,4]
+    expect(array.each_slice(2) {|one, two| [one,two]}).to eq [[1,1],[2,2],[3,3],[4,4]]
   end
+
+  
 
 end
