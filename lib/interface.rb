@@ -32,7 +32,7 @@ class Interface
   def send_rover_position_and_commands
     rover_positions = []
     @input.each_slice(2) do |start_pos, commands|
-      rover = create_rover_at(start_pos)
+      rover = release_rover_at(start_pos)
       execute_commands(commands.strip, rover)
       rover_positions << [rover.current_position]
     end
@@ -45,7 +45,7 @@ class Interface
     [x, y, facing, @plateau_to_explore]
   end
 
-  def create_rover_at(start_pos)
+  def release_rover_at(start_pos)
     position = parse_start_position(start_pos)
     Rover.new(Position.new(*position))
   end
