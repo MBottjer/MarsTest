@@ -11,7 +11,7 @@ class Compass
   end
 
   def self.turn_right_or_left(rotate)
-    if rotate == "R" then number = 1 else number = (-1) end
+    rotate == "R" ? 1 : (-1)
   end
 
 end
