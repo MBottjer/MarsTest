@@ -3,8 +3,8 @@ require_relative '../lib/nasainterface'
 
 describe Interface, " and integration of classes" do
 
-  let(:interface) {Interface.new(File.open('spec/fixtures/input.txt').read)}
-  let(:interface_two) {Interface.new(File.open('spec/fixtures/test_input.txt').read)}
+  let(:interface) {Interface.new(IO.read('spec/fixtures/input.txt'))}
+  let(:interface_two) {Interface.new(IO.read('spec/fixtures/test_input.txt'))}
   let(:rover) {Rover.new}
   let(:rover_two) {Rover.new(Position.new(1,2,"N"))}
 
@@ -33,6 +33,7 @@ describe Interface, " and integration of classes" do
   end
 
   it 'is able to take a rectangular plateau, any positions, multiple rovers and many commands' do
+    expect($stdout).to receive(:puts).exactly(3).times
     expect(interface_two.output_positions).to eq ["5 4 W", "5 2 N", "1 2 S"]
   end
 
