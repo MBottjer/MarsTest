@@ -32,9 +32,11 @@ describe Interface do
     expect(interface.remove_boundary_input).to eq ["1 2 N\n", "LMLMLMLMM\n", "3 3 E\n", "MMRMMRMRRM"]
   end
 
-  it 'can split an array into pairs of arrays' do 
-    array = [1,1,2,2,3,3,4,4]
-    expect(array.each_slice(2) {|one, two| [one,two]}).to eq [[1,1],[2,2],[3,3],[4,4]]
+  it 'can split an array into pairs of arrays and select the first part of each array' do 
+    letters = []
+    array = ["a",1,"b",2,"c",3,"d",4]
+    array.each_slice(2) {|letter, number| letters << letter}
+    expect(letters).to eq ["a","b","c","d"]
   end
 
   
