@@ -9,7 +9,6 @@ class Rover
 
   def initialize(position = Position.new)
     @position = position
-    @current_plateau = nil
   end
 
   def move

@@ -52,34 +52,6 @@ describe Position do
 
   end
 
-  # context 'it can determine whether it is out of bounds' do 
-
-  #   it 'returns true if it is out of the y axis bounds' do 
-  #     expect(position_four.out_of_y_axis?).to be_true
-  #   end
-
-  #   it 'returns false if it is inside the y axis bounds' do 
-  #     expect(position.out_of_y_axis?).to be_false
-  #   end
-
-  #   it 'returns true if out of the x axis bounds' do 
-  #     expect(position_four.out_of_x_axis?).to be_true
-  #   end
-
-  #   it 'returns false if it is inside the x axis bounds' do 
-  #     expect(position_three.out_of_x_axis?).to be_false
-  #   end
-
-  #   it 'is out of bounds when the x coordinate is bigger than the plateaus bounds' do 
-  #     expect { position_three.move }.to raise_error(RuntimeError)
-  #   end
-
-  #   it 'is within the boundaries when the y and x coordinates are less than the plateaus bounds' do 
-  #     expect(position.out_of_bounds?).to be_false
-  #   end
-
-  # end
-
   context 'it is able to change its position by moving' do 
 
     it 'is able to determine whether it is facing north or south' do 
@@ -111,23 +83,6 @@ describe Position do
     it 'raises an error if the move pushes the position out of bounds' do 
       expect{position_three.move}.to raise_error(RuntimeError)
     end
-
-    # it 'can change its x coordinate upon moving along the x-axis' do 
-    #   position_two.move_horizontally
-    #   expect(position_two.x_coord).to eq 1
-    # end
-
-    # it 'can change its y coordinate upon moving along the y-axis' do 
-    #   position_two.move_vertically
-    #   expect(position_two.y_coord).to eq 1
-    # end
-
-    # it 'can return a full set of x and y coordinates and the direction it is facing after being moved' do 
-    #   position.move_vertically
-    #   position.turn("R")
-    #   position.move_horizontally
-    #   expect(position.current_position).to eq "1 1 E"
-    # end
 
   end
 

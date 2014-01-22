@@ -5,30 +5,29 @@ require_relative 'compass'
 
 class Interface
 
-  attr_reader :plateau_to_explore
+  attr_reader :plateau_to_explore, :input
 
-  def initialize
+  def initialize(input)
+    @input = input
     @plateau_to_explore = Plateau.new(get_boundaries[0], get_boundaries[1])
   end
 
   def get_input_as_array
     array = []
-    read_input.each_line { |line| array << line }
+    input.each_line { |line| array << line }
     array
   end
 
-  def read_input
-    File.open('spec/fixtures/input.txt').read
-  end
+  # def read_input
+  #   File.open('spec/fixtures/input.txt').read
+  # end
 
   def get_boundaries
     get_input_as_array[0].split.map {|number| number.to_i}
   end
 
   def remove_boundary_input
-    inputs = get_input_as_array
-    inputs.shift
-    inputs
+    get_input_as_array[1..-1]
   end
 
   def relocate(command, rover)
@@ -70,15 +69,9 @@ class Interface
     Plateau.new(get_boundaries[0], get_boundaries[1])
   end
 
-  
-
   def setup_rover
     Rover.new(Position.new(iterate_through_rovers[0].to_i, iterate_through_rovers[1].to_i, iterate_through_rovers[2]))
   end
-
-  # def move_rover(rover)
-  #   relocate()
-  # end
 
   def array_of(commands)
     commands.split('')
@@ -88,12 +81,4 @@ class Interface
     send
   end
 
-  # properly testing the above method
-  # multiple lines in rspec
-
-
 end
-
-
-
-# Interface.new.send(IO.read('fixtures/input.txt'))
