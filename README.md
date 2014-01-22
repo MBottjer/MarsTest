@@ -14,9 +14,9 @@ The program has five classes:
 
 To demonstrate the programs ability, a file named input.txt can be located from the fixtures folder inside spec. This file contains the kata's specified input and is used in the tests to illustrate the programs ability to determine multiple rovers' new positions and print the output in the terminal. Furthermore, an additional file, called test_input.txt, is included to further tests the programs ability to interpret a larger input file.
 
-There is a script file inside lib called main.rb that can be run using: ruby main.rb 
+Furthermore, there is a script file in the root called main.rb which you can run using ruby main.rb. It takes the input specified in ./spec/fixtures/input.txt and produces the appropriate output.
 
-Assumption:
+Assumptions:
 
   - Rovers cannot collide with each other
   - If rovers go out of bounds it will throw an error
